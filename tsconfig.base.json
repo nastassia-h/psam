@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2022",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@psam/auth": ["modules/auth/src/index.ts"],
+      "@psam/common-ui": ["modules/common-ui/src/index.ts"],
+      "@psam/data": ["modules/shared/data/src/index.ts"],
+      "@psam/layout": ["modules/layout/src/index.ts"],
+      "@psam/profile": ["modules/profile/src/index.ts"],
+      "@psam/ui": ["modules/shared/ui/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

@@ -1,0 +1,27 @@
+<form action="" class="login-form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+   <h1 class="h1 mb60">Login</h1>
+
+   <lib-psam-input
+      placeholder="Enter login"
+      formControlName="username"
+   >Username</lib-psam-input>
+   
+   <lib-psam-input
+      [type]="isPasswordVisible() ? 'text' : 'password'" 
+      placeholder="Enter password"
+      formControlName="password"
+   >
+   Password
+   <button class="password-eye-btn" (click)="isPasswordVisible.set(!isPasswordVisible())">
+      @if (isPasswordVisible()) {
+         <img src="/assets/svg/eye-close-4.svg" alt="eye-close-icon" />
+      } @else {
+         <img src="/assets/svg/eye-open-4.svg" alt="eye-open-icon" />
+      }
+   </button>
+   </lib-psam-input>
+
+   <button class="btn login-form__btn btn-shadow" type="submit">Sign in</button>
+</form>
+<a class="subtitle mb20 pointer" [routerLink]="['/register']">Don't have an account? Register here</a>
+<img class="login-page__logo" src="/assets/img/logo.png" alt="logo">

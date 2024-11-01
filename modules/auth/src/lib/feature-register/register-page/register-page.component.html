@@ -1,0 +1,56 @@
+<form action="" class="register-form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+   <h1 class="h1 mb32">Register</h1>
+
+   <lib-psam-input
+      placeholder="Enter Firstname"
+      formControlName="firstname"
+   >Firstname</lib-psam-input>
+
+   <lib-psam-input
+      placeholder="Enter Lastname"
+      formControlName="lastname"
+   >Lastname</lib-psam-input>
+
+   <lib-psam-input
+      placeholder="Enter Username"
+      formControlName="username"
+   >Username</lib-psam-input>
+
+   <lib-psam-input
+      placeholder="Enter city"
+      formControlName="city"
+   >City</lib-psam-input>
+   
+   <lib-psam-input
+      [type]="isPasswordVisible() ? 'text' : 'password'" 
+      placeholder="Enter password"
+      formControlName="password"
+   >
+   Password 
+   <button class="password-eye-btn" (click)="isPasswordVisible.set(!isPasswordVisible())">
+      @if (isPasswordVisible()) {
+         <img src="/assets/svg/eye-close-4.svg" alt="eye-close-icon" />
+      } @else {
+         <img src="/assets/svg/eye-open-4.svg" alt="eye-open-icon" />
+      }
+   </button>
+   </lib-psam-input>
+
+   <lib-psam-input
+      [type]="isPasswordConfirmVisible() ? 'text' : 'password'" 
+      placeholder="Enter password confirmation"
+      formControlName="passwordConfirm"
+   >
+   Password confirmation
+   <button class="password-eye-btn" (click)="isPasswordVisible.set(!isPasswordVisible())">
+      @if (isPasswordVisible()) {
+         <img src="/assets/svg/eye-close-4.svg" alt="eye-close-icon" />
+      } @else {
+         <img src="/assets/svg/eye-open-4.svg" alt="eye-open-icon" />
+      }
+   </button>
+   </lib-psam-input>
+
+   <button class="btn register-form__btn btn-shadow mb20" type="submit">Sign up</button>
+</form>
+<a class="subtitle pointer" [routerLink]="['/login']">Already have an account? Log in here</a>
