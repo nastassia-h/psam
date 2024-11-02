@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { ImgUrlPipe } from '@psam/common-ui';
+import { AvatarCircleComponent, ImgUrlPipe } from '@psam/common-ui';
 import { Profile } from '@psam/profile';
 
 @Component({
   selector: 'lib-subscriber-card',
   standalone: true,
-  imports: [ImgUrlPipe],
+  imports: [ImgUrlPipe, AvatarCircleComponent],
   templateUrl: './subscriber-card.component.html',
   styleUrl: './subscriber-card.component.scss'
 })

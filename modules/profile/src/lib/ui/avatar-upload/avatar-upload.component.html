@@ -1,6 +1,14 @@
-@if (avatarUrl(); as avatarUrl) {
-   <img [src]="avatarUrl | imgUrl" alt="me avatar">
-} @else {
-   <img src="/assets/img/blank-user.png" alt="avatar placeholder">
-}
+<img class="avatar" [src]="preview()" alt="avatar upload">
 
+<div dnd class="dropzone" tabindex="0" (keyup.enter)="fileDrop.click()" (fileDropped)="onFileDropped($event)">
+   <div class="dropzone-content">
+      <span class="medium-text">Drag and drop or upload image</span>
+   </div>
+
+   <input tabindex="-1" 
+      class="avatar-input" 
+      type="file" 
+      #fileDrop
+      (change)="fileBrowserHandler($event)"
+   >
+</div>

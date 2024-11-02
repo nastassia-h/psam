@@ -2,7 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import { Component, HostBinding, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { ImgUrlPipe } from '@psam/common-ui';
+import { AvatarCircleComponent, ImgUrlPipe } from '@psam/common-ui';
 import { profileActions, selectMe, selectSubscriptions } from '@psam/profile';
 import { ProfileService } from '@psam/profile';
 import { firstValueFrom, tap } from 'rxjs';
@@ -11,7 +11,7 @@ import { SubscriberCardComponent } from './subscriber-card/subscriber-card.compo
 @Component({
   selector: 'lib-sidebar',
   standalone: true,
-  imports: [RouterLink, AsyncPipe, ImgUrlPipe, SubscriberCardComponent],
+  imports: [RouterLink, AsyncPipe, ImgUrlPipe, SubscriberCardComponent, AvatarCircleComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })

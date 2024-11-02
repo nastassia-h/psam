@@ -1,0 +1,42 @@
+@if (profile$ | async; as profile) {
+   <lib-profile-header [profile]="profile"></lib-profile-header>
+   <div class="profile-form__wrapper">
+      <form class="profile-form" [formGroup]="form">
+         <div class="two-columns">
+            <label class="form-label">
+               <span class="form-label__text">Firstname:</span>
+               <input type="text" class="form-input" formControlName="firstName">
+            </label>
+            <label class="form-label">
+               <span class="form-label__text">Lastname:</span>
+               <input type="text" class="form-input" formControlName="lastName">
+            </label>
+         </div>
+         <label class="form-label">
+            <span class="form-label__text">Username:</span>
+            <input type="text" class="form-input" formControlName="username">
+         </label>
+         <label class="form-label">
+            <span class="form-label__text">About me:</span>
+            <textarea class="form-input form-textarea"  
+               formControlName="description"
+               rows="4"
+            ></textarea>
+         </label>
+         <label for="avatar-upload" class="form-label">
+            <span class="form-label__text">Avatar:</span>
+            <lib-avatar-upload id="avatar-upload"></lib-avatar-upload>
+         </label>
+         <lib-stack-input formControlName="stack">Stack:</lib-stack-input>
+         <label class="form-label">
+            <span class="form-label__text">City:</span>
+            <input type="text" class="form-input" formControlName="city">
+         </label>
+      </form>
+   </div>
+   <div>
+      <div>
+         <button class="btn" (click)="onSave()">Save</button>
+      </div>
+   </div>
+}
