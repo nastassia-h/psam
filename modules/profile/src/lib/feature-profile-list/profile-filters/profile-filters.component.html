@@ -1,0 +1,15 @@
+<div class="filters__wrapper">
+   <form class="profile-form" [formGroup]="form">
+      <div class="two-columns mb20">
+         <label class="form-label">
+            <span class="form-label__text">Firstname:</span>
+            <input type="text" class="form-input" formControlName="firstName">
+         </label>
+         <label class="form-label">
+            <span class="form-label__text">Lastname:</span>
+            <input type="text" class="form-input" formControlName="lastName">
+         </label>
+      </div>
+      <lib-stack-input formControlName="stack">Stack:</lib-stack-input>
+   </form>
+</div>

@@ -1,0 +1,17 @@
+:host {
+   border: 1px solid var(--light-color);
+   padding: 16px 20px;
+}
+
+.two-columns {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   justify-content: space-between;
+   gap: 20px;
+}
+
+.form-label {
+   &__text {
+      flex: 1;
+   }
+}

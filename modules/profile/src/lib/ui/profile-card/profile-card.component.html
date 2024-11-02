@@ -1,1 +1,29 @@
-<p>profile-card works!</p>
+@if (profile) {
+   <div class="profile-card">
+      <div class="profile-card__grid mb20">
+         <div class="avatar-name" [routerLink]="['/profile', profile.id]">
+            <lib-avatar-circle class="size70" [avatarUrl]="profile.avatarUrl"></lib-avatar-circle>
+            <div class="profile-card__name">
+               <strong class="h6">{{ profile.firstName }} {{ profile.lastName }}</strong>
+               <span class="subtitle">{{ profile.username }}</span>
+            </div>
+         </div>
+         <div class="profile-card__description">{{ profile.description }}</div>
+         <div class="profile-card__tags">
+            @for(skill of profile.stack; track skill) {
+               <div class="skill-tag">{{ skill }}</div>
+            }
+         </div>
+      </div>
+      <div class="profile-card__action-btns">
+         <button class="btn" (click)="profile.isSubscpription ? unsubscribe(profile.id) : subscribe(profile.id)">
+            @if(profile.isSubscpription) {
+               Unsubsribe
+            } @else {
+               Subscribe
+            }
+         </button>
+      </div>
+   </div>
+   }
+   
