@@ -19,6 +19,7 @@
       "@psam/common-ui": ["modules/common-ui/src/index.ts"],
       "@psam/data": ["modules/shared/data/src/index.ts"],
       "@psam/layout": ["modules/layout/src/index.ts"],
+      "@psam/post": ["modules/post/src/index.ts"],
       "@psam/profile": ["modules/profile/src/index.ts"],
       "@psam/ui": ["modules/shared/ui/src/index.ts"]
     }

@@ -8,11 +8,12 @@ import { selectMe } from '../../data';
 import { AsyncPipe } from '@angular/common';
 import { ImgUrlPipe, SvgIconComponent } from '@psam/common-ui';
 import { ProfileHeaderComponent } from "../../ui/profile-header/profile-header.component";
+import { PostFeedComponent } from '@psam/post';
 
 @Component({
   selector: 'lib-profile-page',
   standalone: true,
-  imports: [AsyncPipe, SvgIconComponent, RouterLink, ImgUrlPipe, ProfileHeaderComponent],
+  imports: [AsyncPipe, SvgIconComponent, RouterLink, ImgUrlPipe, ProfileHeaderComponent, PostFeedComponent],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss'
 })

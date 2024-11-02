@@ -1,0 +1,14 @@
+<lib-avatar-circle
+   class="size32"
+   [avatarUrl]="avatarUrl()"
+></lib-avatar-circle>   
+
+<textarea class="hidden-textarea"
+   [(ngModel)]="inputValue"
+   (input)="onTextAreaInput($event)"
+   placeholder="Type something..."
+></textarea>
+
+<button class="btn-icon send-button" (click)="onCreate()">
+   <img src="/assets/svg/send.svg" alt="send button">
+</button>

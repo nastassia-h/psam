@@ -1,0 +1,41 @@
+@if(post(); as post) {
+   <lib-avatar-circle
+      class="size32"
+      [avatarUrl]="post.author.avatarUrl"
+   ></lib-avatar-circle>
+
+   <main class="post-body">
+      <div class="post-header">
+         <strong class="post__author">
+            {{ post.author.firstName}} {{ post.author.lastName }}
+            <span class="post__created-at">{{ post.createdAt | dateDelta }}</span>
+         </strong>
+      </div>
+      <div class="post-content medium-text">{{ post.content }}</div>
+
+      <div class="post-counters ">
+         <span class="comment-amount" type="button" aria-hidden="true" (click)="toggleComments()">
+            <img width="16px" height="16px" src="/assets/svg/comment.svg" alt="comment button">
+            <span class="comments-length">{{ comments().length }}</span>
+         </span>
+         <span class="likes-amount">
+            <img width="16px" height="16px" src="/assets/svg/heart.svg" alt="comment button">
+            <span class="likes-length">{{ post.likes }}</span>
+         </span>
+      </div>
+
+      @if( isCommentsOpened() ) {
+         <lib-message-input
+            class="comment"
+            [avatarUrl]="me()!.avatarUrl"
+            (created)="handleCommentCreate($event)"
+         ></lib-message-input>
+         <div class="post__comments-wrapper">
+            @for(comment of comments(); track comment.id) {
+               <lib-comment [comment]="comment"></lib-comment>
+            }
+         </div>
+      }
+      
+   </main>
+} 
