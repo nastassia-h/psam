@@ -1,5 +1,5 @@
 import { Injectable, inject } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Comment, CommentCreateDto } from "../interfaces/comment.interface";
 import { PostService } from "./post.service";
 import { Post } from "../interfaces/post.interface";
@@ -16,13 +16,13 @@ export class CommentService {
    posts = this.postService.posts
 
    createComment(payload: CommentCreateDto) {
-      return this.#http.post<Comment>(this.baseApiUrl, payload)
+      const params = new HttpParams()
+         .set('Text', payload.Text)
+         .set('PostId', payload.PostId);
+      return this.#http.post<Comment>(`${this.baseApiUrl}CreateComment`, {}, {params})
    }
 
    getCommentsByPost(id: number) {
-      return this.#http.get<Post>(`${this.baseApiUrl}GetAllCommentsFromPost/` + id)
-         .pipe(
-            map(res => res.Comments)
-         )
+      return this.#http.get<Comment[]>(`${this.baseApiUrl}GetAllCommentsFromPost/${id}`)
    }
 }

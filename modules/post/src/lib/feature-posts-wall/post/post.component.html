@@ -18,9 +18,13 @@
             <img width="16px" height="16px" src="/assets/svg/comment.svg" alt="comment button">
             <span class="comments-length">{{ comments().length }}</span>
          </span>
-         <span class="likes-amount">
-            <img width="16px" height="16px" src="/assets/svg/heart.svg" alt="comment button">
-            <span class="likes-length">{{ post.PostLikes.length }}</span>
+         <span class="likes-amount" type="button" aria-hidden="true" (click)="toggleLike()">
+            @if (isPostLikedByMe()) {
+               <img width="16px" height="16px" src="/assets/svg/heart-filled.svg" alt="comment button">
+            } @else {
+               <img width="16px" height="16px" src="/assets/svg/heart.svg" alt="comment button">
+            }
+            <span class="likes-length">{{ likesCount() }}</span>
          </span>
       </div>
 

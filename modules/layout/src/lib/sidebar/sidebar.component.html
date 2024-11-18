@@ -37,7 +37,9 @@
          </a>
       </div>
    </div>
-   
+   <div class="mt20">
+      <button class="btn logout-btn" (click)="logout()">Log out</button>
+   </div>
    <footer class="sidebar-footer mt20">
       @if (me(); as me) {
          <lib-avatar-circle class="size32" [avatarUrl]="me.ImageBase64"></lib-avatar-circle>

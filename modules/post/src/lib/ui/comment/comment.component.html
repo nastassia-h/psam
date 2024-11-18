@@ -1,9 +1,9 @@
 @if(comment(); as comment) {
-   <lib-avatar-circle [avatarUrl]="comment.Author.ImageBase64" class="size32">
+   <lib-avatar-circle [avatarUrl]="comment.Author?.ImageBase64" class="size32">
    </lib-avatar-circle>
    <div class="comment-body">
       <div class="comment__header">
-         <strong class="comment__author">{{ comment.Author.Username }}</strong>
+         <strong class="comment__author">{{ comment.Author?.Username }}</strong>
          <span class="comment__date">{{ comment.CreatedAt | date:"dd.MM.y"  }}</span>
       </div>
       <div class="comment__content medium-text">{{ comment.Text }}</div>

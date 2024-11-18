@@ -7,6 +7,7 @@ import { profileActions, selectMe, selectSubscribers, selectSubscriptions } from
 import { ProfileService } from '@psam/profile';
 import { firstValueFrom, tap } from 'rxjs';
 import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component';
+import { AuthService } from '@psam/auth';
 
 @Component({
   selector: 'lib-sidebar',
@@ -17,6 +18,7 @@ import { SubscriberCardComponent } from './subscriber-card/subscriber-card.compo
 })
 export class SidebarComponent implements OnInit {
   profileService = inject(ProfileService);
+  authService = inject(AuthService);
   store = inject(Store);
   me = this.store.selectSignal(selectMe)
   subscribers = this.store.selectSignal(selectSubscribers);
@@ -66,5 +68,9 @@ export class SidebarComponent implements OnInit {
   closeMenu() {
     this.isOpened = false;
     this.isClosed = true;
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

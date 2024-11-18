@@ -6,6 +6,8 @@ import { TokenResponse } from './auth.interface';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { LoginPayload } from '../data/login.payload.interface';
+import { Store } from '@ngrx/store';
+import { profileActions } from '@psam/profile';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,7 @@ export class AuthService {
   http = inject(HttpClient);
   cookieService = inject(CookieService);
   router = inject(Router);
+  store = inject(Store);
 
   baseApiUrl = 'http://localhost:5269/'
 
@@ -47,6 +50,7 @@ export class AuthService {
     this.cookieService.deleteAll();
     this.token = null;
     this.refreshToken = null;
+    this.store.dispatch(profileActions.setMe({profile: null}))
     this.router.navigate(['/login']);
   }
 

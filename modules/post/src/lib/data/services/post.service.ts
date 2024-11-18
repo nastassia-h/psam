@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { inject, Injectable, signal } from "@angular/core";
-import { Post, PostCreateDto } from "../interfaces/post.interface";
+import { LikesCount, Post, PostCreateDto } from "../interfaces/post.interface";
 import { switchMap, tap } from "rxjs";
 
 @Injectable({
@@ -37,33 +37,15 @@ export class PostService {
          )
    }
 
+   fetchPostLikesCount(id: number) {
+      return this.#http.get<LikesCount>(`${this.baseApiUrl}GetPostLikesCount/${id}`)
+   }
+
    createLike(postId: number) {
       return this.#http.post<string>(`${this.baseApiUrl}LikePost/${postId}`, {})
-         .pipe(
-            tap(res => {
-               const updatedPosts = this.posts().map(post => {
-                  if (post.Id === postId) {
-                     //post.PostLikes += 1;
-                  }
-                  return post;
-               })
-               this.posts.set(updatedPosts)
-            })
-         )
    }
 
    deleteLike(postId: number) {
       return this.#http.delete<string>(`${this.baseApiUrl}UnlikePost/${postId}`)
-         .pipe(
-            tap(res => {
-               const updatedPosts = this.posts().map(post => {
-                  if (post.Id === postId) {
-                     //post.likes -= 1;
-                  }
-                  return post;
-               })
-               this.posts.set(updatedPosts)
-            })
-         )
    }
 }

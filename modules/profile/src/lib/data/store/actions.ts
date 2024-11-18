@@ -13,7 +13,7 @@ export const profileActions = createActionGroup({
       'unsubscribe success': props<{id: number}>(),
       'subscribe success': props<{id: number}>(),
       'set page': props<{page?: number}>(),
-      'set me': props<{profile: Profile}>(),
+      'set me': props<{profile: Profile | null}>(),
       'set unreadMsg': props<{unreadMsg: number}>()
    }
 })

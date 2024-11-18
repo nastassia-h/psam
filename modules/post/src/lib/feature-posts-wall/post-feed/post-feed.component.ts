@@ -54,8 +54,7 @@ export class PostFeedComponent implements AfterViewInit {
 
   adjustHostHeight() {
     const {top} = this.hostElement.nativeElement.getBoundingClientRect();
-    let height = window.innerHeight - top - 24 - 24;
-    height = (window.innerWidth < 1200) ? height + top : height
+    const height = window.innerHeight - top - 24 - 24;
     this.r2.setStyle(this.hostElement.nativeElement, 'height', `${height}px`);
   }
 
@@ -64,5 +63,6 @@ export class PostFeedComponent implements AfterViewInit {
       Title: 'Test',
       Content: event.data
     }))
+    this.feed$ = this.postService.fetchPosts();
   }
 }

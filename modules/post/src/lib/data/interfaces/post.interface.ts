@@ -14,6 +14,7 @@ export interface Post {
    images?: string[],
    CreatedAt: string,
    UpdatedAt: string,
+   LikeCount?: number,
    PostLikes: Like[],
    Comments: Comment[]
 }
@@ -30,4 +31,9 @@ interface Profile {
    City: string,
    isSubscriber?: boolean,
    isSubscpription?: boolean, 
+}
+
+export interface LikesCount {
+   postId: number,
+   likeCount: number
 }
