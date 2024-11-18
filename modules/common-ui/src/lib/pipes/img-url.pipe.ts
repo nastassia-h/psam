@@ -7,6 +7,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ImgUrlPipe implements PipeTransform {
 
   transform(value: string | null): string {
-    return `https://icherniakov.ru/yt-course/${value}`;
+    return `http://localhost:5269/profile-images/${value}`;
   }
 }

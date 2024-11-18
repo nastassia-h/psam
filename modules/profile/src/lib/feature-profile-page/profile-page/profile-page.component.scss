@@ -10,7 +10,7 @@
    padding: 24px;
    gap: 20px;
 
-   ::ng-deep app-profile-header {
+   ::ng-deep lib-profile-header {
       padding: 0;
    }
 }
@@ -94,7 +94,7 @@
       grid-template-columns: 1fr;
       grid-gap: 24px;
 
-      ::ng-deep app-post-feed {
+      ::ng-deep lib-post-feed {
          order: 2;
       }
    }

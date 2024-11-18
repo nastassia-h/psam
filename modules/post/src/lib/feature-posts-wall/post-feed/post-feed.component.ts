@@ -1,29 +1,32 @@
-import { AfterViewInit, Component, ElementRef, inject, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, Renderer2, signal } from '@angular/core';
 import { CommentService, PostService } from '../../data';
 import { Store } from '@ngrx/store';
-import { auditTime, firstValueFrom, fromEvent } from 'rxjs';
+import { auditTime, firstValueFrom, fromEvent, switchMap } from 'rxjs';
 import { MessageInputComponent } from '../../ui';
 import { PostComponent } from '../post/post.component';
+import { ActivatedRoute } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'lib-post-feed',
   standalone: true,
-  imports: [MessageInputComponent, PostComponent],
+  imports: [MessageInputComponent, PostComponent, AsyncPipe],
   templateUrl: './post-feed.component.html',
   styleUrl: './post-feed.component.scss'
 })
 export class PostFeedComponent implements AfterViewInit {
   postService = inject(PostService)
   commentService = inject(CommentService)
+  route = inject(ActivatedRoute);
   store = inject(Store)
   r2 = inject(Renderer2)
-  feed = this.postService.posts
+  //feed = this.postService.posts
+  isMe = signal<boolean>(false);
 
   hostElement = inject(ElementRef)
 
   constructor() {
-    console.log('sdh')
-    firstValueFrom(this.postService.fetchPosts())
+    //firstValueFrom(this.postService.fetchPosts())
 
     fromEvent(window, 'resize')
       .pipe(
@@ -31,6 +34,19 @@ export class PostFeedComponent implements AfterViewInit {
       )
       .subscribe(() => this.adjustHostHeight())
   }
+
+  feed$ = this.route.params
+    .pipe(
+      switchMap(({id}) => {
+        if (id === 'me') {
+          this.isMe.set(true);
+          return this.postService.fetchPosts();
+        };
+
+        this.isMe.set(false)
+        return this.postService.fetchSubscribedPosts(id);
+      })
+  )
 
   ngAfterViewInit() {
     this.adjustHostHeight()

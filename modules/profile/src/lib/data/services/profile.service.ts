@@ -22,7 +22,7 @@ export class ProfileService {
   }
 
   getAccount(id: string) {
-    return this.http.get<Profile>(`${this.baseApiUrl}${id}`);
+    return this.http.get<Profile>(`${this.baseApiUrl}GetAccountById/${id}`);
   }
 
   removeTechnology(id: number) {
@@ -58,7 +58,7 @@ export class ProfileService {
 
   uploadAvatar(file: File) {
     const fd = new FormData();
-    fd.append('image', file)
+    fd.append('file', file)
     return this.http.post<Profile>(`${this.baseApiUrl}upload_image`, fd)
   }
 

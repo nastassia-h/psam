@@ -1,9 +1,12 @@
 @if (profile$ | async; as profile) {
    <header class="profile-page__header profile-header">
       <lib-profile-header [profile]="profile"></lib-profile-header>
-      <a class="btn profile-header__settings" [routerLink]="['/settings']">Edit
-         <img class="to-settings-icon" src="/assets/svg/settings.svg" alt="settings icon" width="18px" height="18px">
-      </a>
+      @if(isMe()) {
+         <a class="btn profile-header__settings" [routerLink]="['/settings']">Edit
+            <img class="to-settings-icon" src="/assets/svg/settings.svg" alt="settings icon" width="18px" height="18px">
+         </a>
+      }
+     
    </header>
    <main class="profile-page__body">
       <lib-post-feed></lib-post-feed>
@@ -13,9 +16,9 @@
             <h3 class="h6 mb16">Subscribers</h3>
             <div class="profile-page__subscribers mb32">
                <div class="subscribers-wrapper">
-                  @for(subscriber of subscribers$ | async; track subscriber.AccountId) {
+                  @for(subscriber of subscribers(); track subscriber.AccountId) {
                      <a [routerLink]="['/profile', subscriber.AccountId]" class="subscriber-avatar-btn">
-                        <img class="subscriber-avatar" [src]="subscriber.ImageBase64 | imgUrl" alt="">
+                        <lib-avatar-circle [avatarUrl]="subscriber.ImageBase64" class="size32"></lib-avatar-circle>
                      </a>
                   }
                </div>

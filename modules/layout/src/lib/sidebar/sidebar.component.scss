@@ -19,7 +19,7 @@
    &-main {
       flex: 1;
 
-      ::ng-deep app-subscriber-card {
+      ::ng-deep lib-subscriber-card {
          cursor: pointer;
       }
    }

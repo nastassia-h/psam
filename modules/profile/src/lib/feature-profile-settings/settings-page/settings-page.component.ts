@@ -31,7 +31,6 @@ export class SettingsPageComponent {
     LastName: ['', Validators.required],
     Username: [{value: '', disabled: true}, Validators.required],
     Description: [''],
-    //Technologies: [[] as string[]],
     City: ['', Validators.required]
   })
 

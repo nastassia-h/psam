@@ -1,5 +1,9 @@
 @if (avatarUrl(); as avatarUrl) {
-   <img [src]="avatarUrl | imgUrl" alt="me avatar">
+   @if (avatarUrl.length) {
+      <img [src]="avatarUrl | imgUrl" alt="me avatar">
+   } @else {
+      <img src="/assets/img/blank-user.png" alt="avatar placeholder">
+   }
 } @else {
    <img src="/assets/img/blank-user.png" alt="avatar placeholder">
 }

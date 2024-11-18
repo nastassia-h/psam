@@ -1,11 +1,13 @@
-<lib-message-input
-   class="post-input"
-   [avatarUrl]=""
-   (created)="handlePostCreated($event)"
-></lib-message-input>
+@if(isMe()) {
+   <lib-message-input
+      class="post-input"
+      [avatarUrl]=""
+      (created)="handlePostCreated($event)"
+   ></lib-message-input>
+}
 
 <div #postFeedContainer class="post-feed-container">
-   @for(post of feed(); track post.Id) {
+   @for(post of feed$ | async ; track post.Id) {
       <lib-post 
          [post]="post"
       ></lib-post>
