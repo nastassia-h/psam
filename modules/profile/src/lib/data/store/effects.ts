@@ -28,7 +28,7 @@ export class ProfileEffects {
          switchMap(([_, filters, pageable]) => {
             return this.profileService.filterAccounts({...filters, ...pageable})
          }),
-         map(res => profileActions.profilesLoaded({profiles: res.items}))
+         map(res => profileActions.profilesLoaded({profiles: res}))
       )
    })
 

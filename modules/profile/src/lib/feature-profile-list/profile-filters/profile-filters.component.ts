@@ -17,9 +17,9 @@ export class ProfileFiltersComponent implements OnDestroy {
   store = inject(Store);
 
   form = this.fb.group({
-    firstName: [''],
-    lastName: [''],
-    stack: [[] as string[]]
+    FirstName: [''],
+    LastName: [''],
+    Technologies: [[] as string[]]
   })
 
   searchFormSub!: Subscription

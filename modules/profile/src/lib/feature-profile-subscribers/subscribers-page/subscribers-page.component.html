@@ -1,7 +1,7 @@
 <h1 class="h3 mb20">Subscribers</h1>
 
 <div class="profile-card__wrapper">
-   @for (profile of subscribers(); track profile.id; let last = $last) {
+   @for (profile of subscribers(); track profile.AccountId; let last = $last) {
       <lib-profile-card [profile]="profile" ></lib-profile-card>
       @if (last) {
          @defer (on viewport) {

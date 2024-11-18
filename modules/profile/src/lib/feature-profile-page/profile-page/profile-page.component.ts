@@ -1,9 +1,9 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProfileService } from '../../data';
 import { Store } from '@ngrx/store';
-import { switchMap } from 'rxjs';
+import { firstValueFrom, switchMap } from 'rxjs';
 import { selectMe } from '../../data';
 import { AsyncPipe } from '@angular/common';
 import { ImgUrlPipe, SvgIconComponent } from '@psam/common-ui';
@@ -22,9 +22,10 @@ export class ProfilePageComponent {
   route = inject(ActivatedRoute);
   router = inject(Router);
   store = inject(Store);
+  me = this.store.selectSignal(selectMe);
 
   me$ = toObservable(this.store.selectSignal(selectMe));
-  subscribers$ = this.profileService.getSubscribersShortList(1, 5);
+  subscribers$ = this.profileService.getSubscribersShortList(this.me()!.AccountId, {page: 1, size: 5});
 
   isMe = signal<boolean>(false);
 

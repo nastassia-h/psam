@@ -12,14 +12,10 @@ import { Store } from '@ngrx/store';
 export class ProfileService {
   http = inject(HttpClient);
   store = inject(Store);
-  baseApiUrl = 'https://icherniakov.ru/yt-course/account/'
-
-  getTestAccounts() {
-    return this.http.get<Profile[]>(`${this.baseApiUrl}test_accounts`);
-  }
+  baseApiUrl = 'http://localhost:5269/'
 
   getMe() {
-    return this.http.get<Profile>(`${this.baseApiUrl}me`)
+    return this.http.get<Profile>(`${this.baseApiUrl}GetMe`)
       .pipe(
         tap(res => this.store.dispatch(profileActions.setMe({profile: res})))
       )
@@ -29,30 +25,32 @@ export class ProfileService {
     return this.http.get<Profile>(`${this.baseApiUrl}${id}`);
   }
 
-  getSubscribersShortList(page: number, size: number) {
-    return this.http.get<Pageble<Profile>>(`${this.baseApiUrl}subscribers/?page=${page}&size=${size}`)
-      .pipe(
-        map(res => res.items)
-      );
+  removeTechnology(id: number) {
+    return this.http.delete(`${this.baseApiUrl}RemoveTechnologies/${id}`)
   }
 
-  getSubscriptions(params: Record<string, any>) {
-    return this.http.get<Pageble<Profile>>(`${this.baseApiUrl}subscriptions/`, {params})
-      .pipe(
-        map(res => res.items)
-      );
+  addTechnology(technology: string) {
+    return this.http.post(`${this.baseApiUrl}AddTechnologies`, {technology})
+  }
+
+  getSubscribersShortList(id: number | null, params: Record<string, any>) {
+    return this.http.get<Profile[]>(`${this.baseApiUrl}GetAccountsSubscribers/${id}`, {params})
+  }
+
+  getSubscriptions(id: number | null, params: Record<string, any>) {
+    return this.http.get<Profile[]>(`${this.baseApiUrl}GetAccountsSubscriptions/${id}/`, {params})
   }
 
   subscribe(id: number) {
-    return this.http.post<string>(`${this.baseApiUrl}subscribe/${id}`, {})
+    return this.http.post<string>(`${this.baseApiUrl}Subscribe/${id}`, {})
   }
 
   unsubscribe(id: number) {
-    return this.http.delete<string>(`${this.baseApiUrl}subscribe/${id}`, {})
+    return this.http.delete<string>(`${this.baseApiUrl}Subscribe/${id}`)
   }
 
   patchProfile(profile: Partial<Profile>) {
-    return this.http.patch<Profile>(`${this.baseApiUrl}me`, profile)
+    return this.http.patch<Profile>(`${this.baseApiUrl}UpdateMe`, profile)
       .pipe(
         tap(res => this.store.dispatch(profileActions.setMe({profile: res})))
       )
@@ -65,6 +63,6 @@ export class ProfileService {
   }
 
   filterAccounts(params: Record<string, any>) {
-    return this.http.get<Pageble<Profile>>(`${this.baseApiUrl}accounts`, {params})
+    return this.http.get<Profile[]>(`${this.baseApiUrl}GetAccounts`, {params})
   }
 }

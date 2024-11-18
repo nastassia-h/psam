@@ -5,21 +5,21 @@
          <div class="two-columns">
             <label class="form-label">
                <span class="form-label__text">Firstname:</span>
-               <input type="text" class="form-input" formControlName="firstName">
+               <input type="text" class="form-input" formControlName="FirstName">
             </label>
             <label class="form-label">
                <span class="form-label__text">Lastname:</span>
-               <input type="text" class="form-input" formControlName="lastName">
+               <input type="text" class="form-input" formControlName="LastName">
             </label>
          </div>
          <label class="form-label">
             <span class="form-label__text">Username:</span>
-            <input type="text" class="form-input" formControlName="username">
+            <input type="text" class="form-input" formControlName="Username">
          </label>
          <label class="form-label">
             <span class="form-label__text">About me:</span>
             <textarea class="form-input form-textarea"  
-               formControlName="description"
+               formControlName="Description"
                rows="4"
             ></textarea>
          </label>
@@ -27,10 +27,10 @@
             <span class="form-label__text">Avatar:</span>
             <lib-avatar-upload id="avatar-upload"></lib-avatar-upload>
          </label>
-         <lib-stack-input formControlName="stack">Stack:</lib-stack-input>
+         <lib-stack-input [formControl]="Technologies">Technologies:</lib-stack-input>
          <label class="form-label">
             <span class="form-label__text">City:</span>
-            <input type="text" class="form-input" formControlName="city">
+            <input type="text" class="form-input" formControlName="City">
          </label>
       </form>
    </div>

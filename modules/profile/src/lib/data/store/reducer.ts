@@ -36,8 +36,8 @@ export const profileFeature = createFeature({
       }),
       on(profileActions.profilesLoaded, (state, payload) => {
          const patchedProfiles = payload.profiles.map(profile => {
-            let isSubscriber = state.subscribers.filter(sub => sub.id === profile.id).length > 0
-            let isSubscpription = state.subscriptions.filter(sub => sub.id === profile.id).length > 0
+            const isSubscriber = state.subscribers.filter(sub => sub.AccountId === profile.AccountId).length > 0
+            const isSubscpription = state.subscriptions.filter(sub => sub.AccountId === profile.AccountId).length > 0
             return {
                ...profile,
                isSubscpription: isSubscpription,
@@ -59,7 +59,7 @@ export const profileFeature = createFeature({
       }),
       on(profileActions.subscribersLoaded, (state, payload) => {
          const patchedSubscribers = payload.profiles.map(profile => {
-            let isSubscpription = state.subscriptions.filter(sub => sub.id === profile.id).length > 0
+            const isSubscpription = state.subscriptions.filter(sub => sub.AccountId === profile.AccountId).length > 0
             return {
                ...profile,
                isSubscpription: isSubscpription,
@@ -73,7 +73,7 @@ export const profileFeature = createFeature({
       }),
       on(profileActions.subscriptionsLoaded, (state, payload) => {
          const patchedSubscriptions = payload.profiles.map(profile => {
-            let isSubscriber = state.subscribers.filter(sub => sub.id === profile.id).length > 0
+            const isSubscriber = state.subscribers.filter(sub => sub.AccountId === profile.AccountId).length > 0
             return {
                ...profile,
                isSubscpription: true,
@@ -87,14 +87,14 @@ export const profileFeature = createFeature({
       }),
       on(profileActions.subscribeSuccess, (state, { id }) => {
          const updatedProfiles = state.profiles.map(profile =>
-            profile.id === id ? { ...profile, isSubscpription: true, subscribersAmount: profile.subscribersAmount + 1 } : profile
+            profile.AccountId === id ? { ...profile, isSubscpription: true, subscribersAmount: profile.SubscriberAmount + 1 } : profile
          );
 
          const updatedSubscribers = state.subscribers.map(profile =>
-            profile.id === id ? { ...profile, isSubscpription: true, subscribersAmount: profile.subscribersAmount + 1 } : profile
+            profile.AccountId === id ? { ...profile, isSubscpription: true, subscribersAmount: profile.SubscriberAmount + 1 } : profile
          );
 
-         const newSubscription = updatedProfiles.find(profile => profile.id === id);
+         const newSubscription = updatedProfiles.find(profile => profile.AccountId === id);
 
          return {
             ...state,
@@ -107,18 +107,18 @@ export const profileFeature = createFeature({
       }),
       on(profileActions.unsubscribeSuccess, (state, { id }) => {
          const updatedProfiles = state.profiles.map(profile =>
-            profile.id === id ? { ...profile, isSubscpription: false, subscribersAmount: profile.subscribersAmount - 1 } : profile
+            profile.AccountId === id ? { ...profile, isSubscpription: false, subscribersAmount: profile.SubscriberAmount - 1 } : profile
          );
 
          const updatedSubscribers = state.subscribers.map(profile =>
-            profile.id === id ? { ...profile, isSubscpription: false, subscribersAmount: profile.subscribersAmount - 1 } : profile
+            profile.AccountId === id ? { ...profile, isSubscpription: false, subscribersAmount: profile.SubscriberAmount - 1 } : profile
          );
 
          return {
             ...state,
             profiles: updatedProfiles,
             subscribers: updatedSubscribers,
-            subscriptions: state.subscriptions.filter(sub => sub.id !== id)
+            subscriptions: state.subscriptions.filter(sub => sub.AccountId !== id)
          };
       }),
       on(profileActions.setPage, (state, payload) => {

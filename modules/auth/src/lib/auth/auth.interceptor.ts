@@ -42,7 +42,7 @@ const refreshAndProceeed = (
       return authService.refreshAuthToken()
       .pipe(
          switchMap((res) => {
-            return next(addToken(req, res.access_token))
+            return next(addToken(req, res.Jwt))
                .pipe(
                   tap(() => {
                      isRefreshing$.next(false);

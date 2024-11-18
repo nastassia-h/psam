@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, ElementRef, inject, Renderer2 } from '@angular/core';
 import { CommentService, PostService } from '../../data';
 import { Store } from '@ngrx/store';
-import { selectMe } from '@psam/profile';
 import { auditTime, firstValueFrom, fromEvent } from 'rxjs';
 import { MessageInputComponent } from '../../ui';
 import { PostComponent } from '../post/post.component';
@@ -19,11 +18,11 @@ export class PostFeedComponent implements AfterViewInit {
   store = inject(Store)
   r2 = inject(Renderer2)
   feed = this.postService.posts
-  me = this.store.selectSignal(selectMe)
 
   hostElement = inject(ElementRef)
 
   constructor() {
+    console.log('sdh')
     firstValueFrom(this.postService.fetchPosts())
 
     fromEvent(window, 'resize')
@@ -46,9 +45,8 @@ export class PostFeedComponent implements AfterViewInit {
 
   handlePostCreated(event: { data: string }) {
     firstValueFrom(this.postService.createPost({
-      title: 'Test',
-      content: event.data,
-      authorId: this.me()!.id
+      Title: 'Test',
+      Content: event.data
     }))
   }
 }

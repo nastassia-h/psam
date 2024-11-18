@@ -1,11 +1,11 @@
 <lib-message-input
    class="post-input"
-   [avatarUrl]="me()!.avatarUrl"
+   [avatarUrl]=""
    (created)="handlePostCreated($event)"
 ></lib-message-input>
 
 <div #postFeedContainer class="post-feed-container">
-   @for(post of feed(); track post.id) {
+   @for(post of feed(); track post.Id) {
       <lib-post 
          [post]="post"
       ></lib-post>

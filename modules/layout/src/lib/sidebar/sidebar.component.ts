@@ -3,7 +3,7 @@ import { Component, HostBinding, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AvatarCircleComponent, ImgUrlPipe } from '@psam/common-ui';
-import { profileActions, selectMe, selectSubscriptions } from '@psam/profile';
+import { profileActions, selectMe, selectSubscribers, selectSubscriptions } from '@psam/profile';
 import { ProfileService } from '@psam/profile';
 import { firstValueFrom, tap } from 'rxjs';
 import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component';
@@ -18,8 +18,8 @@ import { SubscriberCardComponent } from './subscriber-card/subscriber-card.compo
 export class SidebarComponent implements OnInit {
   profileService = inject(ProfileService);
   store = inject(Store);
-  subscribers$ = this.profileService.getSubscribersShortList(1, 3);
   me = this.store.selectSignal(selectMe)
+  subscribers = this.store.selectSignal(selectSubscribers);
   subscriptions = this.store.selectSignal(selectSubscriptions)
 
   @HostBinding('class.open')
@@ -45,15 +45,17 @@ export class SidebarComponent implements OnInit {
   async ngOnInit() {
     await firstValueFrom(this.profileService.getMe())
 
-    await firstValueFrom(this.profileService.getSubscriptions({})
-      .pipe(
-        tap(res => this.store.dispatch(profileActions.subscriptionsLoaded({profiles: res})))
-      ))
+    await firstValueFrom(this.profileService.getSubscriptions(this.me()?.AccountId ?? null, {})
+    .pipe(
+      tap(res => this.store.dispatch(profileActions.subscriptionsLoaded({profiles: res})))
+    ))
 
-    await firstValueFrom(this.profileService.getSubscribersShortList(1, 50)
+
+    await firstValueFrom(this.profileService.getSubscribersShortList(this.me()?.AccountId ?? null, {})
     .pipe(
       tap(res => this.store.dispatch(profileActions.subscribersLoaded({profiles: res})))
     ))
+
   }
 
   openMenu() {

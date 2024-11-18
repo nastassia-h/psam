@@ -5,13 +5,12 @@ import { PostService } from "./post.service";
 import { Post } from "../interfaces/post.interface";
 import { map } from "rxjs";
 
-
 @Injectable({
    providedIn: 'root'
 })
 export class CommentService {
    #http = inject(HttpClient);
-   baseApiUrl = 'https://icherniakov.ru/yt-course/comment/'
+   baseApiUrl = 'http://localhost:5269/'
 
    postService = inject(PostService);
    posts = this.postService.posts
@@ -21,9 +20,9 @@ export class CommentService {
    }
 
    getCommentsByPost(id: number) {
-      return this.#http.get<Post>(`https://icherniakov.ru/yt-course/post/` + id)
+      return this.#http.get<Post>(`${this.baseApiUrl}GetAllCommentsFromPost/` + id)
          .pipe(
-            map(res => res.comments)
+            map(res => res.Comments)
          )
    }
 }

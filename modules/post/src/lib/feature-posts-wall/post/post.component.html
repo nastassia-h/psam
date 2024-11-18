@@ -1,17 +1,17 @@
 @if(post(); as post) {
    <lib-avatar-circle
       class="size32"
-      [avatarUrl]="post.author.avatarUrl"
+      [avatarUrl]="post.Author?.ImageBase64"
    ></lib-avatar-circle>
 
    <main class="post-body">
       <div class="post-header">
          <strong class="post__author">
-            {{ post.author.firstName}} {{ post.author.lastName }}
-            <span class="post__created-at">{{ post.createdAt | dateDelta }}</span>
+            {{ post.Author?.FirstName}} {{ post.Author?.LastName }}
+            <span class="post__created-at">{{ post.CreatedAt | dateDelta }}</span>
          </strong>
       </div>
-      <div class="post-content medium-text">{{ post.content }}</div>
+      <div class="post-content medium-text">{{ post.Content }}</div>
 
       <div class="post-counters ">
          <span class="comment-amount" type="button" aria-hidden="true" (click)="toggleComments()">
@@ -20,18 +20,18 @@
          </span>
          <span class="likes-amount">
             <img width="16px" height="16px" src="/assets/svg/heart.svg" alt="comment button">
-            <span class="likes-length">{{ post.likes }}</span>
+            <span class="likes-length">{{ post.PostLikes.length }}</span>
          </span>
       </div>
 
       @if( isCommentsOpened() ) {
          <lib-message-input
             class="comment"
-            [avatarUrl]="me()!.avatarUrl"
+            [avatarUrl]=""
             (created)="handleCommentCreate($event)"
          ></lib-message-input>
          <div class="post__comments-wrapper">
-            @for(comment of comments(); track comment.id) {
+            @for(comment of comments(); track comment.Id) {
                <lib-comment [comment]="comment"></lib-comment>
             }
          </div>

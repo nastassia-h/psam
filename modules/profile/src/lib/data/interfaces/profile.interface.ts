@@ -1,21 +1,27 @@
 export interface Profile {
-   id: number,
-   username: string,
-   avatarUrl: string | null,
-   subscribersAmount: number,
-   firstName: string,
-   lastName: string,
-   description: string,
-   isActive: boolean,
-   stack: string[],
-   city: string,
+   AccountId: number,
+   Username: string,
+   ImageBase64: string | null,
+   SubscriberAmount: number,
+   FirstName: string,
+   LastName: string,
+   Description: string,
+   IsActive: boolean,
+   Technologies: Technology[],
+   City: string,
    isSubscriber?: boolean,
    isSubscpription?: boolean, 
 }
 
+export interface Technology {
+   TechnologyId: number,
+   AccountId: number,
+   Technology: string
+}
+
 export interface ProfileShort {
-   id: number,
-   username: string,
-   avatarUrl: string,
-   subscribersAmount: number
+   AccountId: number,
+   Username: string,
+   ImageBase64: string,
+   SubscriberAmount: number
 }

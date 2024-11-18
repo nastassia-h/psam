@@ -15,7 +15,7 @@ export class AuthService {
   cookieService = inject(CookieService);
   router = inject(Router);
 
-  baseApiUrl = 'https://icherniakov.ru/yt-course/auth/';
+  baseApiUrl = 'http://localhost:5269/'
 
   token: string|null = null;
   refreshToken: string|null = null;
@@ -29,18 +29,13 @@ export class AuthService {
   }
 
   saveTokens(res: TokenResponse) {
-    this.token = res.access_token;
-    this.refreshToken = res.refresh_token
+    this.token = res.Jwt;
 
     this.cookieService.set('token', this.token)
-    this.cookieService.set('refreshToken', this.refreshToken)
   }
 
   login(payload: LoginPayload) {
-    const fd = new FormData();
-    fd.append('username', payload.username);
-    fd.append('password', payload.password);
-    return this.http.post<TokenResponse>(`${this.baseApiUrl}token`, fd)
+    return this.http.post<TokenResponse>(`${this.baseApiUrl}api/Auth/Login`, payload)
       .pipe(
         tap(val => {
           this.saveTokens(val)

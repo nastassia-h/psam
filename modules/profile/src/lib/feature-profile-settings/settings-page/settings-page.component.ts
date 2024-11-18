@@ -27,19 +27,23 @@ export class SettingsPageComponent {
   fb = inject(FormBuilder);
 
   form = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    username: [{value: '', disabled: true}, Validators.required],
-    description: [''],
-    stack: [[] as string[]],
-    city: ['', Validators.required]
+    FirstName: ['', Validators.required],
+    LastName: ['', Validators.required],
+    Username: [{value: '', disabled: true}, Validators.required],
+    Description: [''],
+    //Technologies: [[] as string[]],
+    City: ['', Validators.required]
   })
+
+  Technologies = this.fb.control([] as string[]);
 
   constructor() {
     effect(() => {
       const profile = this.me();
       if (profile) {
         this.form.patchValue(profile)
+
+        this.Technologies.patchValue(profile.Technologies.map(tech => tech.Technology))
       }
     })
   }

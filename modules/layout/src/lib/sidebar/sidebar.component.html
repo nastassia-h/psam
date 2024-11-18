@@ -27,8 +27,8 @@
    
       <p class="medium-text mb20">Subscribers</p>
    
-      @for(profile of subscribers$ | async; track profile.id) {
-         <lib-subscriber-card [routerLink]="['/profile', profile.id]" [profile]="profile" (click)="closeMenu()"></lib-subscriber-card>
+      @for(profile of subscribers(); track profile.AccountId) {
+         <lib-subscriber-card [routerLink]="['/profile', profile.AccountId]" [profile]="profile" (click)="closeMenu()"></lib-subscriber-card>
       }
    
       <div class="mt20 to-subscribers">
@@ -40,8 +40,8 @@
    
    <footer class="sidebar-footer mt20">
       @if (me(); as me) {
-         <lib-avatar-circle class="size32" [avatarUrl]="me.avatarUrl"></lib-avatar-circle>
-         <div class="medium-text sidebar-footer__username">{{ me.username }}</div>
+         <lib-avatar-circle class="size32" [avatarUrl]="me.ImageBase64"></lib-avatar-circle>
+         <div class="medium-text sidebar-footer__username">{{ me.Username }}</div>
          <a class="sidebar-footer__settings" [routerLink]="['settings']" (click)="closeMenu()">
             <img src="/assets/svg/settings.svg" alt="settings icon">
          </a>

@@ -1,7 +1,7 @@
 <lib-profile-filters></lib-profile-filters>
 
 <div class="profile-card__wrapper">
-   @for (profile of profiles(); track profile.id; let last = $last) {
+   @for (profile of profiles(); track profile.AccountId; let last = $last) {
       <lib-profile-card [profile]="profile"></lib-profile-card>
       @if (last) {
          @defer (on viewport) {

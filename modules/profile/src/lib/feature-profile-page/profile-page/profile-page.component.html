@@ -13,9 +13,9 @@
             <h3 class="h6 mb16">Subscribers</h3>
             <div class="profile-page__subscribers mb32">
                <div class="subscribers-wrapper">
-                  @for(subscriber of subscribers$ | async; track subscriber.id) {
-                     <a [routerLink]="['/profile', subscriber.id]" class="subscriber-avatar-btn">
-                        <img class="subscriber-avatar" [src]="subscriber.avatarUrl | imgUrl" alt="">
+                  @for(subscriber of subscribers$ | async; track subscriber.AccountId) {
+                     <a [routerLink]="['/profile', subscriber.AccountId]" class="subscriber-avatar-btn">
+                        <img class="subscriber-avatar" [src]="subscriber.ImageBase64 | imgUrl" alt="">
                      </a>
                   }
                </div>
@@ -25,12 +25,12 @@
          
          <h3 class="h6 mb16">Skills</h3>
          <div class="profile-page__skills mb32">
-            @for(skill of profile.stack; track skill) {
-               <div class="skill-tag">{{ skill }}</div>
+            @for(skill of profile.Technologies; track skill) {
+               <div class="skill-tag">{{ skill.Technology }}</div>
             }
          </div>
          <h3 class="h6 mb16">About me</h3>
-         <div class="medium-text mb32">{{ profile.description }}</div>
+         <div class="medium-text mb32">{{ profile.Description }}</div>
       </div>
    </main>
 }

@@ -1,21 +1,33 @@
-import { Profile } from "@psam/profile"
 import { Comment } from "./comment.interface"
+import { Like } from "./like.interface"
 
 export interface PostCreateDto {
-   title: string,
-   content: string
-   authorId: number,
+   Title: string,
+   Content: string
 }
 
 export interface Post {
-   id: number,
-   title: string,
-   communityId: number,
-   content: string,
-   author: Profile,
-   images: string[],
-   createdAt: string,
-   updatedAt: string,
-   likes: number,
-   comments: Comment[]
+   Id: number,
+   Title: string,
+   Content: string,
+   Author: Profile,
+   images?: string[],
+   CreatedAt: string,
+   UpdatedAt: string,
+   PostLikes: Like[],
+   Comments: Comment[]
+}
+
+interface Profile {
+   AccountId: number,
+   Username: string,
+   ImageBase64: string | null,
+   SubscriberAmount: number,
+   FirstName: string,
+   LastName: string,
+   Description: string,
+   IsActive: boolean,
+   City: string,
+   isSubscriber?: boolean,
+   isSubscpription?: boolean, 
 }
