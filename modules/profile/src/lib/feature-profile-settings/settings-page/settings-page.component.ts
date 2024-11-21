@@ -22,7 +22,7 @@ export class SettingsPageComponent {
 
   @ViewChild(AvatarUploadComponent) avatarUploader!: AvatarUploadComponent
 
-  profile$ = toObservable(this.me);
+  //profile$ = toObservable(this.me);
 
   fb = inject(FormBuilder);
 

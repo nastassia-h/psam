@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable} from '@angular/core';
 import { Profile } from '../interfaces/profile.interface';
-import { map, tap } from 'rxjs';
-import { profileActions } from '../store';
+import { filter, map, switchMap, tap } from 'rxjs';
+import { profileActions, selectMe } from '../store';
 import { Pageble } from '@psam/data';
 import { Store } from '@ngrx/store';
 
@@ -12,6 +12,7 @@ import { Store } from '@ngrx/store';
 export class ProfileService {
   http = inject(HttpClient);
   store = inject(Store);
+  me = this.store.selectSignal(selectMe)
   baseApiUrl = 'http://localhost:5269/'
 
   getMe() {
@@ -52,7 +53,7 @@ export class ProfileService {
   patchProfile(profile: Partial<Profile>) {
     return this.http.patch<Profile>(`${this.baseApiUrl}UpdateMe`, profile)
       .pipe(
-        tap(res => this.store.dispatch(profileActions.setMe({profile: res})))
+        switchMap(res => this.getMe())
       )
   }
 
@@ -64,5 +65,8 @@ export class ProfileService {
 
   filterAccounts(params: Record<string, any>) {
     return this.http.get<Profile[]>(`${this.baseApiUrl}GetAccounts`, {params})
+      .pipe(
+        map(res => res.filter(account => account.AccountId !== this.me()?.AccountId))
+      )
   }
 }

@@ -12,5 +12,17 @@
          [post]="post"
       ></lib-post>
    }
+
+   @if(feed$ | async; as feed) {
+      @if(!feed.length) {
+         <div class="empty-post-feed">
+            @if (isMe()) {
+               <div>Add your first post!</div>
+            } @else {
+               <div>No posts yet...</div>
+            }
+         </div>
+      }
+   }
 </div>
 

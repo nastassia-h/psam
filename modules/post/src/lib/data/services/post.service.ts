@@ -30,6 +30,13 @@ export class PostService {
          )
    }
 
+   fetchPostsByAccountId(id: number) {
+      return this.#http.get<Post[]>(`${this.baseApiUrl}GetPostsByAccountId/${id}`)
+         .pipe(
+            tap(res => this.posts.set(res.reverse()))
+         )
+   }
+
    fetchSubscribedPosts(id: number) {
       return this.#http.get<Post[]>(`${this.baseApiUrl}SubscribedPosts/${id}`)
          .pipe(

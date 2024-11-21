@@ -6,6 +6,7 @@ import { CommentService, PostService } from '../../data';
 import { firstValueFrom } from 'rxjs';
 import { CommentComponent, MessageInputComponent } from '../../ui';
 import { AvatarCircleComponent, DateDeltaPipe } from '@psam/common-ui';
+import { selectMe } from '@psam/profile';
 
 @Component({
   selector: 'lib-post',
@@ -19,6 +20,7 @@ export class PostComponent implements OnInit {
   comments = signal<Comment[]>([]); 
   likesCount = signal<number>(0);
   store = inject(Store);
+  me = this.store.selectSignal(selectMe)
   commentService = inject(CommentService);
   postService = inject(PostService)
 
@@ -31,6 +33,17 @@ export class PostComponent implements OnInit {
   async ngOnInit() {
     await this.fetchPostComments();
     await this.fetchPostLikesCount();
+    this.handlePostLike()
+  }
+
+  handlePostLike() {
+    const postLikes = this.post()?.PostLikes;
+    postLikes?.forEach(like => {
+      if (like.AccountId === this.me()?.AccountId) {
+        this.isPostLikedByMe.set(true);
+        return;
+      }
+    })
   }
 
   handleCommentCreate(event: {data: string}) {
@@ -43,7 +56,7 @@ export class PostComponent implements OnInit {
 
   async fetchPostComments() {
     const comments = await firstValueFrom(this.commentService.getCommentsByPost(this.post()!.Id))
-    this.comments.set(comments)
+    this.comments.set(comments.reverse())
   }
 
   async fetchPostLikesCount() {

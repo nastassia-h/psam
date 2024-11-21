@@ -1,4 +1,4 @@
-@if (profile$ | async; as profile) {
+@if (me(); as profile) {
    <lib-profile-header [profile]="profile"></lib-profile-header>
    <div class="profile-form__wrapper">
       <form class="profile-form" [formGroup]="form">
@@ -27,7 +27,7 @@
             <span class="form-label__text">Avatar:</span>
             <lib-avatar-upload id="avatar-upload"></lib-avatar-upload>
          </label>
-         <lib-stack-input [formControl]="Technologies">Technologies:</lib-stack-input>
+         <lib-stack-input [formControl]="Technologies">Skills:</lib-stack-input>
          <label class="form-label">
             <span class="form-label__text">City:</span>
             <input type="text" class="form-input" formControlName="City">

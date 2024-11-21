@@ -6,6 +6,7 @@ import { MessageInputComponent } from '../../ui';
 import { PostComponent } from '../post/post.component';
 import { ActivatedRoute } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
+import { selectMe } from '@psam/profile';
 
 @Component({
   selector: 'lib-post-feed',
@@ -19,6 +20,7 @@ export class PostFeedComponent implements AfterViewInit {
   commentService = inject(CommentService)
   route = inject(ActivatedRoute);
   store = inject(Store)
+  me = this.store.selectSignal(selectMe)
   r2 = inject(Renderer2)
   //feed = this.postService.posts
   isMe = signal<boolean>(false);
@@ -38,13 +40,9 @@ export class PostFeedComponent implements AfterViewInit {
   feed$ = this.route.params
     .pipe(
       switchMap(({id}) => {
-        if (id === 'me') {
-          this.isMe.set(true);
-          return this.postService.fetchPosts();
-        };
-
-        this.isMe.set(false)
-        return this.postService.fetchSubscribedPosts(id);
+        this.isMe.set(id === 'me');
+        const accountId = id === 'me' ? this.me()!.AccountId : id
+        return this.postService.fetchPostsByAccountId(accountId);
       })
   )
 

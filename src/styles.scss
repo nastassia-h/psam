@@ -11,6 +11,7 @@
    --dark-hover-color: #161616;
    --light-transparent-color: rgba(255, 255, 255, 0.75);
    ---light-border: 1px solid var(--light-color);
+   ---dashed-primary-border: 1px dashed var(--primary-color);
    --font-size: clamp(16px, calc(20px + (36 – 20) * (100vw - 768px)/(1920 – 768)), 48px);
 
 }
