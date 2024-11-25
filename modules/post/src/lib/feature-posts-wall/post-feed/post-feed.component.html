@@ -1,7 +1,7 @@
 @if(isMe()) {
    <lib-message-input
       class="post-input"
-      [avatarUrl]=""
+      [avatarUrl]="me()?.ImageBase64"
       (created)="handlePostCreated($event)"
    ></lib-message-input>
 }

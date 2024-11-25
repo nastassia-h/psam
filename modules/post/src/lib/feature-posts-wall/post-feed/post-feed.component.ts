@@ -61,6 +61,6 @@ export class PostFeedComponent implements AfterViewInit {
       Title: 'Test',
       Content: event.data
     }))
-    this.feed$ = this.postService.fetchPosts();
+    this.feed$ = this.postService.fetchPostsByAccountId(this.me()!.AccountId);
   }
 }

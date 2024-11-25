@@ -51,7 +51,8 @@ export class AuthService {
     this.token = null;
     this.refreshToken = null;
     this.store.dispatch(profileActions.setMe({profile: null}))
-    this.router.navigate(['/login']);
+    window.location.href = '/login';
+    //this.router.navigate(['/login']);
   }
 
   refreshAuthToken() {
