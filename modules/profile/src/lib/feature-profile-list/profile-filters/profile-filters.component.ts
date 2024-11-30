@@ -2,7 +2,7 @@ import { Component, inject, OnDestroy } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { debounceTime, startWith, Subscription } from 'rxjs';
-import { profileActions, selectProfileFilters } from '../../data';
+import { profileActions, selectProfileFilters } from '@psam/profile-data'
 import { StackInputComponent } from '../../ui';
 
 @Component({

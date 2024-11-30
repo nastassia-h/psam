@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ProfileService, selectSubscriptions } from '../../data';
+import { ProfileService, selectSubscriptions } from '@psam/profile-data';
 import { Store } from '@ngrx/store';
 import { ProfileCardComponent } from '../../ui';
 import { InfiniteScrollTriggerComponent } from '@psam/common-ui';

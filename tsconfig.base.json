@@ -21,6 +21,7 @@
       "@psam/layout": ["modules/layout/src/index.ts"],
       "@psam/post": ["modules/post/src/index.ts"],
       "@psam/profile": ["modules/profile/src/index.ts"],
+      "@psam/profile-data": ["modules/profile-data/src/index.ts"],
       "@psam/ui": ["modules/shared/ui/src/index.ts"]
     }
   },

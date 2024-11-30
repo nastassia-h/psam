@@ -1,4 +1,4 @@
-import { Profile } from "@psam/profile"
+import { Profile } from "@psam/profile-data"
 import { Comment } from "./comment.interface"
 
 export interface PostCreateDto {

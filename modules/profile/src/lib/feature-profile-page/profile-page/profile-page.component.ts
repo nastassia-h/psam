@@ -1,10 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { ProfileService } from '../../data';
+import { ProfileService } from '@psam/profile-data';
 import { Store } from '@ngrx/store';
 import { switchMap } from 'rxjs';
-import { selectMe } from '../../data';
+import { selectMe } from '@psam/profile-data';
 import { AsyncPipe } from '@angular/common';
 import { ImgUrlPipe, SvgIconComponent } from '@psam/common-ui';
 import { ProfileHeaderComponent } from "../../ui/profile-header/profile-header.component";

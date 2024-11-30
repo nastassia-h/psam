@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { profileActions, selectFilteredProfiles } from '../../data';
+import { profileActions, selectFilteredProfiles } from '@psam/profile-data';
 import { Store } from '@ngrx/store';
 import { ProfileCardComponent } from '../../ui';
 import { AsyncPipe } from '@angular/common';

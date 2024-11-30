@@ -3,8 +3,8 @@ import { Component, HostBinding, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AvatarCircleComponent, ImgUrlPipe } from '@psam/common-ui';
-import { profileActions, selectMe, selectSubscriptions } from '@psam/profile';
-import { ProfileService } from '@psam/profile';
+import { profileActions, selectMe, selectSubscriptions } from '@psam/profile-data';
+import { ProfileService } from '@psam/profile-data';
 import { firstValueFrom, tap } from 'rxjs';
 import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component';
 

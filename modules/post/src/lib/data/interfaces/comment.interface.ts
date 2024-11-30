@@ -1,4 +1,4 @@
-import { ProfileShort } from "@psam/profile"
+import { ProfileShort } from "@psam/profile-data"
 
 export interface CommentCreateDto {
      text: string,

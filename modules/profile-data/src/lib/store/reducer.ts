@@ -36,8 +36,8 @@ export const profileFeature = createFeature({
       }),
       on(profileActions.profilesLoaded, (state, payload) => {
          const patchedProfiles = payload.profiles.map(profile => {
-            let isSubscriber = state.subscribers.filter(sub => sub.id === profile.id).length > 0
-            let isSubscpription = state.subscriptions.filter(sub => sub.id === profile.id).length > 0
+            const isSubscriber = state.subscribers.filter(sub => sub.id === profile.id).length > 0
+            const isSubscpription = state.subscriptions.filter(sub => sub.id === profile.id).length > 0
             return {
                ...profile,
                isSubscpription: isSubscpription,
@@ -59,7 +59,7 @@ export const profileFeature = createFeature({
       }),
       on(profileActions.subscribersLoaded, (state, payload) => {
          const patchedSubscribers = payload.profiles.map(profile => {
-            let isSubscpription = state.subscriptions.filter(sub => sub.id === profile.id).length > 0
+            const isSubscpription = state.subscriptions.filter(sub => sub.id === profile.id).length > 0
             return {
                ...profile,
                isSubscpription: isSubscpription,
@@ -73,7 +73,7 @@ export const profileFeature = createFeature({
       }),
       on(profileActions.subscriptionsLoaded, (state, payload) => {
          const patchedSubscriptions = payload.profiles.map(profile => {
-            let isSubscriber = state.subscribers.filter(sub => sub.id === profile.id).length > 0
+            const isSubscriber = state.subscribers.filter(sub => sub.id === profile.id).length > 0
             return {
                ...profile,
                isSubscpription: true,

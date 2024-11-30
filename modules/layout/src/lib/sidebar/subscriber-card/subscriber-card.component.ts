@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AvatarCircleComponent, ImgUrlPipe } from '@psam/common-ui';
-import { Profile } from '@psam/profile';
+import { Profile } from '@psam/profile-data';
 
 @Component({
   selector: 'lib-subscriber-card',

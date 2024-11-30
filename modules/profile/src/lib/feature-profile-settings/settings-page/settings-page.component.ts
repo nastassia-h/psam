@@ -3,7 +3,7 @@ import { AvatarUploadComponent } from "../../ui/avatar-upload/avatar-upload.comp
 import { ProfileHeaderComponent, StackInputComponent } from '../../ui';
 import { AsyncPipe } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Profile, ProfileService, selectMe } from '../../data';
+import { Profile, ProfileService, selectMe } from '@psam/profile-data';
 import { Store } from '@ngrx/store';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { firstValueFrom } from 'rxjs';

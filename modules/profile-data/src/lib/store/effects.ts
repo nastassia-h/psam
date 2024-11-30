@@ -2,10 +2,10 @@ import { inject, Injectable } from "@angular/core";
 import { ProfileService } from "../services/profile.service";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { profileActions } from "./actions";
-import { lastValueFrom, switchMap, withLatestFrom } from "rxjs";
+import { switchMap, withLatestFrom } from "rxjs";
 import { map } from "rxjs";
 import { Store } from "@ngrx/store";
-import { selectFilteredProfiles, selectProfileFilters, selectProfilePageable } from "./selectors";
+import { selectProfileFilters, selectProfilePageable } from "./selectors";
 
 @Injectable({
    providedIn: 'root'

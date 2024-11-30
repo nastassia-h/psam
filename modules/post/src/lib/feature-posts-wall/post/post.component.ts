@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Post } from '../../data/interfaces/post.interface';
 import { Comment } from '../../data/interfaces/comment.interface';
 import { CommentService } from '../../data';
-import { ProfileService, selectMe } from '@psam/profile';
+import { ProfileService, selectMe } from '@psam/profile-data';
 import { firstValueFrom } from 'rxjs';
 import { CommentComponent, MessageInputComponent } from '../../ui';
 import { AvatarCircleComponent, DateDeltaPipe } from '@psam/common-ui';

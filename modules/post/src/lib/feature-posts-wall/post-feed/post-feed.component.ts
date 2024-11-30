@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, inject, Renderer2 } from '@angular/core';
 import { CommentService, PostService } from '../../data';
 import { Store } from '@ngrx/store';
-import { selectMe } from '@psam/profile';
+import { selectMe } from '@psam/profile-data';
 import { auditTime, firstValueFrom, fromEvent } from 'rxjs';
 import { MessageInputComponent } from '../../ui';
 import { PostComponent } from '../post/post.component';

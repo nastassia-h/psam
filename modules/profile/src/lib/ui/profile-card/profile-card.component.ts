@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Profile, profileActions } from '../../data';
+import { Profile, profileActions } from '@psam/profile-data';
 import { RouterLink } from '@angular/router';
 import { AvatarCircleComponent, ImgUrlPipe } from '@psam/common-ui';
 

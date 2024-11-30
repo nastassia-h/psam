@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Profile } from '../../data/index';
+import { Profile } from '@psam/profile-data';
 import { AvatarCircleComponent } from '@psam/common-ui';
 
 @Component({
