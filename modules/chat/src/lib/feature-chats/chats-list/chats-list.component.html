@@ -1,0 +1,17 @@
+<div class="chats-filters-input__wrapper">
+   <label class="form-label">
+      <span class="form-label__text">Search:</span>
+      <input type="text" class="form-input" [formControl]="filterChatsControl">
+   </label>
+</div>
+
+<div class="chats-list-container">
+   @for(chat of chats$ | async; track chat.id) {
+      <lib-chats-btn 
+         [chat]="chat"
+         [routerLink]="[chat.id]"
+         routerLinkActive="active"
+      ></lib-chats-btn>
+   }
+</div>
+

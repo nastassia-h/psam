@@ -1,0 +1,12 @@
+<div #messagesContainer class="messages-container">
+   @if (messages(); as messages) {
+      @for (message of messages; track message; let first = $first) { 
+         @if (isNewDay(message.createdAt) || first) {
+            <div class="medium-text date-divider">{{ message.createdAt | date: "dd.M.y"  }}</div>
+         }
+         <lib-chat-workspace-message [message]="message"></lib-chat-workspace-message>
+      }
+   }
+</div>
+
+<lib-message-input class="message-input" (created)="createMessage($event, chat().id)"></lib-message-input>

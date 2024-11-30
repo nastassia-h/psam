@@ -1,0 +1,12 @@
+:host {
+   border-right: var(---light-border);
+}
+
+.chats-filters-input__wrapper {
+   padding: 16px 20px;
+}
+
+.chats-list-container {
+   height: calc(100% - 97px);
+   overflow-y: scroll;
+}

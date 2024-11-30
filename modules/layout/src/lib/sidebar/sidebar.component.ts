@@ -2,24 +2,27 @@ import { AsyncPipe } from '@angular/common';
 import { Component, HostBinding, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AvatarCircleComponent, ImgUrlPipe } from '@psam/common-ui';
-import { profileActions, selectMe, selectSubscriptions } from '@psam/profile-data';
+import { AvatarCircleComponent } from '@psam/common-ui';
+import { profileActions, selectMe, selectSubscriptions, selectUnreadMsg } from '@psam/profile-data';
 import { ProfileService } from '@psam/profile-data';
 import { firstValueFrom, tap } from 'rxjs';
 import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component';
+import { ChatsService } from '@psam/chat';
 
 @Component({
   selector: 'lib-sidebar',
   standalone: true,
-  imports: [RouterLink, AsyncPipe, ImgUrlPipe, SubscriberCardComponent, AvatarCircleComponent],
+  imports: [RouterLink, AsyncPipe, SubscriberCardComponent, AvatarCircleComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent implements OnInit {
   profileService = inject(ProfileService);
+  chatsService = inject(ChatsService);
   store = inject(Store);
   subscribers$ = this.profileService.getSubscribersShortList(1, 3);
   me = this.store.selectSignal(selectMe)
+  unreadMsg = this.store.selectSignal(selectUnreadMsg)
   subscriptions = this.store.selectSignal(selectSubscriptions)
 
   @HostBinding('class.open')
@@ -31,6 +34,10 @@ export class SidebarComponent implements OnInit {
     {
       label: 'Home',
       link: 'profile/me'
+    },
+    {
+      label: 'Chats',
+      link: 'chats'
     },
     {
       label: 'Search',
@@ -54,6 +61,8 @@ export class SidebarComponent implements OnInit {
     .pipe(
       tap(res => this.store.dispatch(profileActions.subscribersLoaded({profiles: res})))
     ))
+
+    this.chatsService.connectWS();
   }
 
   openMenu() {

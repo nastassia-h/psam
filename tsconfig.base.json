@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@psam/auth": ["modules/auth/src/index.ts"],
+      "@psam/chat": ["modules/chat/src/index.ts"],
       "@psam/common-ui": ["modules/common-ui/src/index.ts"],
       "@psam/data": ["modules/shared/data/src/index.ts"],
       "@psam/layout": ["modules/layout/src/index.ts"],
