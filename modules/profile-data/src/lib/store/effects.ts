@@ -36,8 +36,8 @@ export class ProfileEffects {
       return this.actions$.pipe(
          ofType(profileActions.subscribe),
          switchMap(action =>
-            this.profileService.subscribe(action.id).pipe(
-               map(() => profileActions.subscribeSuccess({ id: action.id })),
+            this.profileService.subscribe(action.profile.id).pipe(
+               map(() => profileActions.subscribeSuccess({ profile: action.profile })),
             )
          )
       )

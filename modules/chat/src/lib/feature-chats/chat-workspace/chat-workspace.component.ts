@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, inject, Renderer2 } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChatsService } from '../../data';
 import { auditTime, fromEvent, merge, switchMap } from 'rxjs';
@@ -11,7 +11,8 @@ import { AsyncPipe } from '@angular/common';
   standalone: true,
   imports: [ChatWorkspaceHeaderComponent, ChatWorkspaceMessagesWrapperComponent, AsyncPipe],
   templateUrl: './chat-workspace.component.html',
-  styleUrl: './chat-workspace.component.scss'
+  styleUrl: './chat-workspace.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatWorkspaceComponent implements AfterViewInit {
   activatedRoute = inject(ActivatedRoute);

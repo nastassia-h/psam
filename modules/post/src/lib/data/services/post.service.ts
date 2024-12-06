@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, signal } from "@angular/core";
 import { Post, PostCreateDto } from "../interfaces/post.interface";
-import { switchMap, tap } from "rxjs";
+import { map, switchMap, tap } from "rxjs";
 
 @Injectable({
    providedIn: 'root'
@@ -23,7 +23,19 @@ export class PostService {
    fetchPosts() {
       return this.#http.get<Post[]>(this.baseApiUrl)
          .pipe(
-            tap(res => this.posts.set(res.reverse()))
+            map(posts => {
+               const timestamp = Date.now();
+               return posts.map(post => ({
+                 ...post,
+                 author: {
+                   ...post.author,
+                   avatarUrl: post.author.avatarUrl 
+                     ? `${post.author.avatarUrl}?timestamp=${timestamp}` 
+                     : post.author.avatarUrl,
+                 }
+               }));
+             }),
+            tap(res => this.posts.set(res))
          )
    }
 

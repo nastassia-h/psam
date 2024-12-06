@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RegisterPayload } from '../../data/register.payload.interface';
 import { AuthService } from '../../auth/auth.service';
 import { Router, RouterLink } from '@angular/router';
@@ -10,7 +10,8 @@ import { PsamInputComponent } from '@psam/common-ui';
   standalone: true,
   imports: [ReactiveFormsModule, RouterLink, PsamInputComponent],
   templateUrl: './register-page.component.html',
-  styleUrl: './register-page.component.scss'
+  styleUrl: './register-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterPageComponent {
   authService = inject(AuthService);

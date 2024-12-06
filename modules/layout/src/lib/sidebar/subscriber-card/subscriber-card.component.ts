@@ -1,13 +1,14 @@
-import { Component, Input } from '@angular/core';
-import { AvatarCircleComponent, ImgUrlPipe } from '@psam/common-ui';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { AvatarCircleComponent} from '@psam/common-ui';
 import { Profile } from '@psam/profile-data';
 
 @Component({
   selector: 'lib-subscriber-card',
   standalone: true,
-  imports: [ImgUrlPipe, AvatarCircleComponent],
+  imports: [AvatarCircleComponent],
   templateUrl: './subscriber-card.component.html',
-  styleUrl: './subscriber-card.component.scss'
+  styleUrl: './subscriber-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SubscriberCardComponent {
   @Input() profile!:Profile;

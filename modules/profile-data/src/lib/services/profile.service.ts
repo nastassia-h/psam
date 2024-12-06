@@ -21,6 +21,12 @@ export class ProfileService {
   getMe() {
     return this.http.get<Profile>(`${this.baseApiUrl}me`)
       .pipe(
+        map(res => {
+          if (res.avatarUrl) {
+            res.avatarUrl = `${res.avatarUrl}?timestamp=${Date.now()}`;
+          }
+          return res;
+        }),
         tap(res => this.store.dispatch(profileActions.setMe({profile: res})))
       )
   }
@@ -54,6 +60,12 @@ export class ProfileService {
   patchProfile(profile: Partial<Profile>) {
     return this.http.patch<Profile>(`${this.baseApiUrl}me`, profile)
       .pipe(
+        map(res => {
+          if (res.avatarUrl) {
+            res.avatarUrl = `${res.avatarUrl}?timestamp=${Date.now()}`;
+          }
+          return res;
+        }),
         tap(res => this.store.dispatch(profileActions.setMe({profile: res})))
       )
   }

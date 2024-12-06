@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, inject, Renderer2 } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, Renderer2 } from '@angular/core';
 import { ChatsService } from '../../data';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { auditTime, combineLatest, fromEvent, map, startWith, switchMap, timer } from 'rxjs';
@@ -11,7 +11,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   standalone: true,
   imports: [ChatsBtnComponent, AsyncPipe, RouterLink, RouterLinkActive, ReactiveFormsModule],
   templateUrl: './chats-list.component.html',
-  styleUrl: './chats-list.component.scss'
+  styleUrl: './chats-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatsListComponent implements AfterViewInit {
   chatsService= inject(ChatsService)

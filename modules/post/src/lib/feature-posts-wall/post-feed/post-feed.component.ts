@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, inject, Renderer2 } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, Renderer2 } from '@angular/core';
 import { CommentService, PostService } from '../../data';
 import { Store } from '@ngrx/store';
 import { selectMe } from '@psam/profile-data';
@@ -11,7 +11,8 @@ import { PostComponent } from '../post/post.component';
   standalone: true,
   imports: [MessageInputComponent, PostComponent],
   templateUrl: './post-feed.component.html',
-  styleUrl: './post-feed.component.scss'
+  styleUrl: './post-feed.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PostFeedComponent implements AfterViewInit {
   postService = inject(PostService)

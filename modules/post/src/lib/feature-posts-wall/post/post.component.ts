@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, input, OnInit, Output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, input, OnInit, Output, signal } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Post } from '../../data/interfaces/post.interface';
 import { Comment } from '../../data/interfaces/comment.interface';
@@ -13,7 +13,8 @@ import { AvatarCircleComponent, DateDeltaPipe } from '@psam/common-ui';
   standalone: true,
   imports: [CommentComponent, MessageInputComponent, AvatarCircleComponent, DateDeltaPipe],
   templateUrl: './post.component.html',
-  styleUrl: './post.component.scss'
+  styleUrl: './post.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PostComponent implements OnInit {
   post = input<Post>();

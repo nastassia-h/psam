@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, inject, input, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, input, OnDestroy, ViewChild } from '@angular/core';
 import * as moment from 'moment';
 import { firstValueFrom } from 'rxjs';
 import { Chat, ChatsService } from '../../../data';
@@ -11,7 +11,8 @@ import { DatePipe } from '@angular/common';
   standalone: true,
   imports: [ChatWorkspaceMessageComponent, MessageInputComponent, DatePipe],
   templateUrl: './chat-workspace-messages-wrapper.component.html',
-  styleUrl: './chat-workspace-messages-wrapper.component.scss'
+  styleUrl: './chat-workspace-messages-wrapper.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatWorkspaceMessagesWrapperComponent implements AfterViewInit, OnDestroy {
   chatsService = inject(ChatsService);

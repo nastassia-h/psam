@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MyChat } from '../../data';
 import { DatePipe } from '@angular/common';
 import { AvatarCircleComponent } from '@psam/common-ui';
@@ -8,7 +8,8 @@ import { AvatarCircleComponent } from '@psam/common-ui';
   standalone: true,
   imports: [DatePipe, AvatarCircleComponent],
   templateUrl: './chats-btn.component.html',
-  styleUrl: './chats-btn.component.scss'
+  styleUrl: './chats-btn.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatsBtnComponent {
   chat = input<MyChat>()

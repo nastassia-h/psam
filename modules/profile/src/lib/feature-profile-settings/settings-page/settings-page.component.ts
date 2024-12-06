@@ -1,11 +1,10 @@
-import { Component, effect, inject, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, ViewChild } from '@angular/core';
 import { AvatarUploadComponent } from "../../ui/avatar-upload/avatar-upload.component";
 import { ProfileHeaderComponent, StackInputComponent } from '../../ui';
 import { AsyncPipe } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Profile, ProfileService, selectMe } from '@psam/profile-data';
 import { Store } from '@ngrx/store';
-import { toObservable } from '@angular/core/rxjs-interop';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
@@ -13,7 +12,8 @@ import { firstValueFrom } from 'rxjs';
   standalone: true,
   imports: [ProfileHeaderComponent, AsyncPipe, ReactiveFormsModule, AvatarUploadComponent, StackInputComponent],
   templateUrl: './settings-page.component.html',
-  styleUrl: './settings-page.component.scss'
+  styleUrl: './settings-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SettingsPageComponent {
   profileService = inject(ProfileService);
@@ -21,8 +21,6 @@ export class SettingsPageComponent {
   me = this.store.selectSignal(selectMe)
 
   @ViewChild(AvatarUploadComponent) avatarUploader!: AvatarUploadComponent
-
-  profile$ = toObservable(this.me);
 
   fb = inject(FormBuilder);
 
@@ -44,17 +42,20 @@ export class SettingsPageComponent {
     })
   }
 
-  onSave() {
+  async onSave() {
     this.form.markAllAsTouched()
     this.form.updateValueAndValidity()
 
     if (this.form.invalid) return;
 
-    if (this.avatarUploader.avatar) {
-      firstValueFrom(this.profileService.uploadAvatar(this.avatarUploader.avatar))
-    }
-
     const formValue: Partial<Profile> = this.form.getRawValue() as Partial<Profile>;
+
+    if (this.avatarUploader.avatar) {
+      const profile = await firstValueFrom(this.profileService.uploadAvatar(this.avatarUploader.avatar))
+      if (profile.avatarUrl) {
+        formValue.avatarUrl = profile.avatarUrl + Date.now();
+      }
+    }
 
     firstValueFrom(this.profileService.patchProfile(formValue))
   }

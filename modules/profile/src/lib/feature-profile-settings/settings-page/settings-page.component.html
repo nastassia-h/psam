@@ -1,4 +1,4 @@
-@if (profile$ | async; as profile) {
+@if (me(); as profile) {
    <lib-profile-header [profile]="profile"></lib-profile-header>
    <div class="profile-form__wrapper">
       <form class="profile-form" [formGroup]="form">

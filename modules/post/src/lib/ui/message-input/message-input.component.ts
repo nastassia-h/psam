@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, input, Output, Renderer2 } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, input, Output, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AvatarCircleComponent } from '@psam/common-ui';
 
@@ -7,7 +7,8 @@ import { AvatarCircleComponent } from '@psam/common-ui';
   standalone: true,
   imports: [FormsModule, AvatarCircleComponent],
   templateUrl: './message-input.component.html',
-  styleUrl: './message-input.component.scss'
+  styleUrl: './message-input.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MessageInputComponent {
   r2 = inject(Renderer2)

@@ -85,24 +85,20 @@ export const profileFeature = createFeature({
             subscriptions: state.subscriptions.concat(patchedSubscriptions)
          }
       }),
-      on(profileActions.subscribeSuccess, (state, { id }) => {
-         const updatedProfiles = state.profiles.map(profile =>
-            profile.id === id ? { ...profile, isSubscpription: true, subscribersAmount: profile.subscribersAmount + 1 } : profile
+      on(profileActions.subscribeSuccess, (state, { profile }) => {
+         const updatedProfiles = state.profiles.map(pr =>
+            pr.id === profile.id ? { ...pr, isSubscpription: true, subscribersAmount: pr.subscribersAmount + 1 } : pr
          );
 
-         const updatedSubscribers = state.subscribers.map(profile =>
-            profile.id === id ? { ...profile, isSubscpription: true, subscribersAmount: profile.subscribersAmount + 1 } : profile
+         const updatedSubscribers = state.subscribers.map(pr =>
+            pr.id === profile.id ? { ...pr, isSubscpription: true, subscribersAmount: pr.subscribersAmount + 1 } : pr
          );
-
-         const newSubscription = updatedProfiles.find(profile => profile.id === id);
 
          return {
             ...state,
             profiles: updatedProfiles,
             subscribers: updatedSubscribers,
-            subscriptions: newSubscription
-               ? [...state.subscriptions, newSubscription]
-               : state.subscriptions
+            subscriptions: [...state.subscriptions, profile]
          };
       }),
       on(profileActions.unsubscribeSuccess, (state, { id }) => {

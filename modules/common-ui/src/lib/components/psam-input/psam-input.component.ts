@@ -1,4 +1,4 @@
-import { Component, forwardRef, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, forwardRef, input, signal } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -11,7 +11,8 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModu
     provide: NG_VALUE_ACCESSOR,
     multi: true,
     useExisting: forwardRef(() => PsamInputComponent)
-  }]
+  }],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PsamInputComponent implements ControlValueAccessor {
  

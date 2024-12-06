@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, HostBinding, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AvatarCircleComponent } from '@psam/common-ui';
@@ -14,7 +14,8 @@ import { ChatsService } from '@psam/chat';
   standalone: true,
   imports: [RouterLink, AsyncPipe, SubscriberCardComponent, AvatarCircleComponent],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss'
+  styleUrl: './sidebar.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidebarComponent implements OnInit {
   profileService = inject(ProfileService);

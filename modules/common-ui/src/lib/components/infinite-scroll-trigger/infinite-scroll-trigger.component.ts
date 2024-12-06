@@ -1,11 +1,12 @@
-import { Component, OnInit, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, output } from '@angular/core';
 
 @Component({
   selector: 'lib-infinite-scroll-trigger',
   standalone: true,
   imports: [],
   templateUrl: './infinite-scroll-trigger.component.html',
-  styleUrl: './infinite-scroll-trigger.component.scss'
+  styleUrl: './infinite-scroll-trigger.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InfiniteScrollTriggerComponent implements OnInit {
   loaded = output<void>()

@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, forwardRef, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, forwardRef, signal } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 
@@ -13,7 +13,8 @@ import { BehaviorSubject } from 'rxjs';
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => StackInputComponent),
     multi: true
-  }]
+  }],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StackInputComponent implements ControlValueAccessor {
   onChange = (val: string[]) => {

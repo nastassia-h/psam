@@ -16,7 +16,7 @@
          </div>
       </div>
       <div class="profile-card__action-btns">
-         <button class="btn" (click)="profile.isSubscpription ? unsubscribe(profile.id) : subscribe(profile.id)">
+         <button class="btn" (click)="profile.isSubscpription ? unsubscribe(profile.id) : subscribe(profile)">
             @if(profile.isSubscpription) {
                Unsubsribe
             } @else {

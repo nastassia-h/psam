@@ -23,7 +23,7 @@ export class CommentService {
    getCommentsByPost(id: number) {
       return this.#http.get<Post>(`https://icherniakov.ru/yt-course/post/` + id)
          .pipe(
-            map(res => res.comments)
+            map(res => res.comments.reverse())
          )
    }
 }
