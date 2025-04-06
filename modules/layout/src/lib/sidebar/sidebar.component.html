@@ -42,12 +42,17 @@
    </div>
    
    <footer class="sidebar-footer mt20">
-      @if (me(); as me) {
-         <lib-avatar-circle class="size32" [avatarUrl]="me.avatarUrl"></lib-avatar-circle>
-         <div class="medium-text sidebar-footer__username">{{ me.username }}</div>
-         <a class="sidebar-footer__settings" [routerLink]="['settings']" (click)="closeMenu()">
-            <img src="/assets/svg/settings.svg" alt="settings icon">
-         </a>
-      }
+      <div>
+         <ng-container #sidebarContainer></ng-container>
+      </div>
+      <div class="user-info">
+         @if (me(); as me) {
+            <lib-avatar-circle class="size32" [avatarUrl]="me.avatarUrl"></lib-avatar-circle>
+            <div class="medium-text sidebar-footer__username">{{ me.username }}</div>
+            <a class="sidebar-footer__settings" [routerLink]="['settings']" (click)="closeMenu()">
+               <img src="/assets/svg/settings.svg" alt="settings icon">
+            </a>
+         }
+      </div>
    </footer>
 </div>

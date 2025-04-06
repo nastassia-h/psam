@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, ViewChild, ViewContainerRef } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { PortalService } from '@psam/common-ui';
 
 @Component({
   standalone: true,
@@ -10,4 +11,11 @@ import { RouterModule } from '@angular/router';
 })
 export class AppComponent {
   title = 'psam';
+  #portalService = inject(PortalService)
+
+  @ViewChild('portalContent', {read: ViewContainerRef})
+  set portalContent(container: ViewContainerRef) {
+    if (!container) return
+    this.#portalService.registerContainer(container)
+  }
 }

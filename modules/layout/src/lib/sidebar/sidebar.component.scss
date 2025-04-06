@@ -67,13 +67,18 @@
    }
 
    &-footer {
-      background: var(--dark-hover-color);
-      border-radius: 8px;
-      padding: 4px 16px;
       display: grid;
-      grid-template-columns: 32px 1fr 18px;
-      gap: 8px;
-      align-items: center;
+      gap: 20px;
+      
+      .user-info {
+         background: var(--dark-hover-color);
+         border-radius: 8px;
+         padding: 4px 16px;
+         display: grid;
+         grid-template-columns: 32px 1fr 18px;
+         gap: 8px;
+         align-items: center;
+      }
 
       &__avatar{
          width: 32px;

@@ -1,0 +1,16 @@
+@if(subscriber(); as subscriber) {
+   <a #hostElement
+      [routerLink]="['/profile', subscriber.id]" class="subscriber-avatar-btn">
+   <img class="subscriber-avatar" [src]="subscriber.avatarUrl | imgUrl" alt="">
+</a>
+
+@if (isMouseOver()) {
+   <lib-portal [host]="hostElement">
+      <div class="tooltip">
+         {{subscriber.firstName}}
+      </div>
+   </lib-portal>
+}
+
+}
+

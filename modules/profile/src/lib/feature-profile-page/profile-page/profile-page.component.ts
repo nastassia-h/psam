@@ -9,11 +9,12 @@ import { AsyncPipe } from '@angular/common';
 import { ImgUrlPipe } from '@psam/common-ui';
 import { ProfileHeaderComponent } from "../../ui/profile-header/profile-header.component";
 import { PostFeedComponent } from '@psam/post';
+import { SubscriberCircleComponent } from '../subscriber-circle/subscriber-circle.component';
 
 @Component({
   selector: 'lib-profile-page',
   standalone: true,
-  imports: [AsyncPipe, RouterLink, ImgUrlPipe, ProfileHeaderComponent, PostFeedComponent],
+  imports: [AsyncPipe, RouterLink,SubscriberCircleComponent, ImgUrlPipe, ProfileHeaderComponent, PostFeedComponent],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
